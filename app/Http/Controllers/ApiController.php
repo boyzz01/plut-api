@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Kota;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -15,5 +16,9 @@ class ApiController extends Controller
 
     public function get_kategori(){
         return response()->json(Kategori::all());
+    }
+
+    public function get_user(){
+        return response()->json(User::all());
     }
 }
