@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Kota;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
@@ -18,7 +19,28 @@ class ApiController extends Controller
         return response()->json(Kategori::all());
     }
 
-    public function get_user(){
-        return response()->json(User::all());
+    public function check_user(Request $request)
+    {
+
+        $user = User::where('username',$request->username)->where('password',$request->password)->first();
+
+        
+        if($user==null){
+            return response()
+            ->json([
+                'success' => false,
+                'data' =>"User Not Found"
+            ]);
+        }else{
+            return response()
+                ->json([
+                    'success' => true,
+                    'data' =>$user
+                ]);
+           
+        }
+        
+      
+      
     }
 }
