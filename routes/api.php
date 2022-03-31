@@ -21,3 +21,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('kota',[ApiController::class, 'get_all_kota']);
 Route::get('kategori',[ApiController::class, 'get_kategori']);
+Route::get('user',[ApiController::class, 'get_user']);
