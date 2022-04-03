@@ -31,7 +31,7 @@ class ApiController extends Controller
             return response()
             ->json([
                 'success' => false,
-                'data' =>"User Not Found"
+                'data' =>$user
             ]);
         }else{
             return response()
