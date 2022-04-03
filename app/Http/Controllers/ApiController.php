@@ -8,6 +8,7 @@ use App\Models\Umkm;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -47,9 +48,10 @@ class ApiController extends Controller
 
     public function addUmkm(Request $request){
 
+        $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
         $temp =new Umkm();
         $temp->nama =$request->nama;
-        $temp->kode_kota = $request->kode_kota;
+        $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
 
         $saved = $temp->save();
