@@ -13,6 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'add_umkm'
+        '/add_umkm'
     ];
 }
