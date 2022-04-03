@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Kota;
+use App\Models\Umkm;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,5 +43,14 @@ class ApiController extends Controller
         
       
       
+    }
+
+    public function addUmkm(Request $request){
+        Umkm::create([
+            'nama' => $request->nama,
+            'kode_kota' =>$request->kode_kota,
+            'nib' =>$request->nib
+          ]);
+        return response()->json(['success'=>'UMKM Berhasil ditambah']);
     }
 }
