@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://ardisahputra.me/plut/'),
+    'url' => env('APP_URL', 'https://ardisahputra.me'),
 
     'asset_url' => env('ASSET_URL', null),
 
