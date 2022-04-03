@@ -52,7 +52,7 @@ class ApiController extends Controller
             'nib' =>$request->nib
           ]);
 
-          if(!$data){
+          if($data->exists){
             return response()
             ->json([
                 'success' => false,
