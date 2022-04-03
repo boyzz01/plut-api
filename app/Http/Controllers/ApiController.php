@@ -46,13 +46,20 @@ class ApiController extends Controller
     }
 
     public function addUmkm(Request $request){
-       $data = Umkm::create([
-            'nama' => $request->nama,
-            'kode_kota' =>$request->kode_kota,
-            'nib' =>$request->nib
-          ]);
 
-          if($data->exists){
+        $temp =new Umkm();
+        $temp->nama =$request->nama;
+        $temp->kode_kota = $request->kode_kota;
+        $temp->nib = $request->nib;
+
+        $saved = $temp->save();
+    //    $data = Umkm::create([
+    //         'nama' => $request->nama,
+    //         'kode_kota' =>$request->kode_kota,
+    //         'nib' =>$request->nib
+    //       ]);
+
+          if(!$saved){
             return response()
             ->json([
                 'success' => false,
