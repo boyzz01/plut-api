@@ -55,11 +55,7 @@ class ApiController extends Controller
         $temp->nib = $request->nib;
 
         $saved = $temp->save();
-    //    $data = Umkm::create([
-    //         'nama' => $request->nama,
-    //         'kode_kota' =>$request->kode_kota,
-    //         'nib' =>$request->nib
-    //       ]);
+    
 
           if(!$saved){
             return response()
@@ -75,5 +71,9 @@ class ApiController extends Controller
             ]);
           }
       
+    }
+
+    public function get_umkm(){
+        return response()->json(Umkm::all());
     }
 }

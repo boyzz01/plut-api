@@ -21,5 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('kota',[ApiController::class, 'get_all_kota']);
 Route::get('kategori',[ApiController::class, 'get_kategori']);
+Route::get('umkm',[ApiController::class, 'get_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );
 Route::any('/add_umkm', [ApiController::class,'addUmkm'] );
