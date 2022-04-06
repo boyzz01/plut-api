@@ -78,7 +78,7 @@ class ApiController extends Controller
         return response()->json(Umkm::all());
     }
 
-    public function addProduk(Request $request){
+    public function add_produk(Request $request){
 
         $kategori = DB::table('ms_kategori')->where('nama','=',$request->kategori)->first();
         $temp =new Produk();
