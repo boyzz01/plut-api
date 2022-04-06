@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Kota;
+use App\Models\Produk;
 use App\Models\Umkm;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,7 +62,7 @@ class ApiController extends Controller
             return response()
             ->json([
                 'success' => false,
-                'data' =>"User Not Found"
+                'data' =>"Error"
             ]);
           }else{
             return response()
@@ -75,5 +76,36 @@ class ApiController extends Controller
 
     public function get_umkm(){
         return response()->json(Umkm::all());
+    }
+
+    public function addProduk(Request $request){
+
+        $kategori = DB::table('ms_kategori')->where('nama','=',$request->kategori)->first();
+        $temp =new Produk();
+        $temp->nama =$request->nama;
+        $temp->kode_produk ="11";
+        $temp->harga =$request->harga;
+        $temp->stock =$request->stock;
+        $temp->kode_umkm =$request->umkm;
+        $temp->kode_kota =$request->kota;
+        $temp->kode_kategori = $kategori->kode;
+       
+        $saved = $temp->save();
+    
+
+          if(!$saved){
+            return response()
+            ->json([
+                'success' => false,
+                'data' =>"Error"
+            ]);
+          }else{
+            return response()
+            ->json([
+                'success' => true,
+                'data' =>"UMKM Berhasil ditambah"
+            ]);
+          }
+      
     }
 }
