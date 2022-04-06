@@ -24,4 +24,4 @@ Route::get('kategori',[ApiController::class, 'get_kategori']);
 Route::get('umkm',[ApiController::class, 'get_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );
 Route::any('/add_umkm', [ApiController::class,'addUmkm'] );
-Route::post('/add_produk', [ApiController::class,'add_produk'] );
+Route::any('/add_produk', [ApiController::class,'add_produk'] );
