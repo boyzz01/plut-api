@@ -106,6 +106,12 @@ class ApiController extends Controller
                 'data' =>"UMKM Berhasil ditambah"
             ]);
           }
+
+          return response()
+            ->json([
+                'success' => true,
+                'data' =>"gagal"
+            ]);
       
     }
 }
