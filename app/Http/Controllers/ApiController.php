@@ -157,7 +157,7 @@ class ApiController extends Controller
        return response()
        ->json([
            'success' => true,
-           'data' =>$request
+           'data' =>$produk
        ]);
     }
 }
