@@ -56,12 +56,12 @@ class ApiController extends Controller
 
         // echo $request('nama')."aaa";
         $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
-        $file = $request->foto;
+        $file = $request->file('foto');
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
-        $temp->foto = $file;
+        $temp->foto = $file->getRealPath();
 
         $saved = $temp->save();
     
