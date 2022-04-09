@@ -50,10 +50,12 @@ class ApiController extends Controller
     public function addUmkm(Request $request){
 
         $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
+        $file = $request->file('file');
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
+        $temp->foto = $file->getRealPath();
 
         $saved = $temp->save();
     
