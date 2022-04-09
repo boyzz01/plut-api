@@ -157,7 +157,7 @@ class ApiController extends Controller
         $temp->kode_produk = $kode;
 
         $url = config('app.url');
-        $temp->foto =$url."storage/app/foto/". $foto;
+        $temp->foto =$url."/storage/app/foto/". $foto;
 
        
         $saved = $temp->save();
