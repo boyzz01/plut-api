@@ -151,7 +151,7 @@ class ApiController extends Controller
 
     public function retur_produk(Request $request){
 
-       $produk = Produk::where('kode_produk',$request->kode)->first();
+       $produk = DB::table('barang')->where('kode_produk','=',$request->kode)->first();
 
        $total =  $produk->stock-$request->jumlah;
         DB::table('barang')->where('kode_produk','=',$request->kode)->first()->update(array(
