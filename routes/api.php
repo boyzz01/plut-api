@@ -24,5 +24,6 @@ Route::get('kategori',[ApiController::class, 'get_kategori']);
 Route::get('umkm',[ApiController::class, 'get_umkm']);
 Route::get('produk',[ApiController::class, 'get_produk']);
 Route::any('/login', [ApiController::class,'check_user'] );
-Route::any('/add_umkm', [ApiController::class,'addUmkm'] );
+Route::any('/add_umkm', [ApiController::class,'addUmkm'] )
+->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 Route::any('/add_produk', [ApiController::class,'add_produk'] );
