@@ -103,7 +103,7 @@ class ApiController extends Controller
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
-        $temp->kode_umkm = str_pad($no->counter, 4, '0', STR_PAD_LEFT);
+        $temp->kode_umkm = str_pad($no->counter, 3, '0', STR_PAD_LEFT);
         $saved = $temp->save();
     
 
@@ -138,6 +138,11 @@ class ApiController extends Controller
     public function add_produk(Request $request){
 
         $kategori = DB::table('ms_kategori')->where('nama','=',$request->kategori)->first();
+        $umkm = DB::table('umkm')->where('kode_umkm','=',$request->umkm)->first();
+        $total = $umkm->total+1;
+        $counter = str_pad($total, 4, '0', STR_PAD_LEFT);
+        DB::update("update umkm set total = $total where kode_umkm = $request->umkm");
+        $kode = $request->kota.$request->umkm.$kategori->kode.$counter;
         $temp =new Produk();
         $temp->nama =$request->nama;
         $temp->kode_produk ="11";
@@ -146,6 +151,10 @@ class ApiController extends Controller
         $temp->kode_umkm =$request->umkm;
         $temp->kode_kota =$request->kota;
         $temp->kode_kategori = $kategori->kode;
+        $temp->kode_produk = $kode;
+
+
+
        
         $saved = $temp->save();
     
