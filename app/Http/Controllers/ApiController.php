@@ -95,10 +95,15 @@ class ApiController extends Controller
     public function get_umkm(){
         return response()->json(Umkm::all());
     }
+    
 
     
     public function get_produk(){
         return response()->json(Produk::all());
+    }
+
+    public function get_produk_umkm($id){
+        return response()->json(Produk::all()->where("kode_umkm",$id));
     }
 
     public function add_produk(Request $request){
