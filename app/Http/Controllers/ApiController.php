@@ -63,7 +63,7 @@ class ApiController extends Controller
         $temp->nib = $request->nib;
         $temp->foto = $file->getRealPath();
 
-        // $saved = $temp->save();
+        $saved = $temp->save();
     
 
           if(!$saved){
