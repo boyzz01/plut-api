@@ -54,31 +54,31 @@ class ApiController extends Controller
 
     public function addUmkm(Request $request){
 
-        echo $request('nama')."aaa";
-        // $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
-        // $file = $request->file('file');
-        // $temp =new Umkm();
-        // $temp->nama =$request->nama;
-        // $temp->kode_kota = $kota->kode;
-        // $temp->nib = $request->nib;
-        // $temp->foto = $file->getRealPath();
+        // echo $request('nama')."aaa";
+        $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
+        $file = $request->file('file');
+        $temp =new Umkm();
+        $temp->nama =$request->nama;
+        $temp->kode_kota = $kota->kode;
+        $temp->nib = $request->nib;
+        $temp->foto = $file->getRealPath();
 
-        // // $saved = $temp->save();
+        // $saved = $temp->save();
     
 
-        //   if(!$saved){
-        //     return response()
-        //     ->json([
-        //         'success' => false,
-        //         'data' =>"Error"
-        //     ]);
-        //   }else{
-        //     return response()
-        //     ->json([
-        //         'success' => true,
-        //         'data' =>"UMKM Berhasil ditambah"
-        //     ]);
-        //   }
+          if(!$saved){
+            return response()
+            ->json([
+                'success' => false,
+                'data' =>"Error"
+            ]);
+          }else{
+            return response()
+            ->json([
+                'success' => true,
+                'data' =>"UMKM Berhasil ditambah"
+            ]);
+          }
       
     }
 
