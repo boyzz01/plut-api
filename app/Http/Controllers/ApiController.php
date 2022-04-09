@@ -13,7 +13,14 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
-    //
+        /**
+     * Update the specified user.
+     *
+     * @param  Request  $request
+     * @param  string  $id
+     * @return Response
+     */
+    
     public function get_all_kota(){
         return response()->json(Kota::all());
     }
@@ -26,8 +33,6 @@ class ApiController extends Controller
     {
 
         $user = User::where('username',$request->username)->where('password',$request->password)->first();
-
-        
         if($user==null){
             return response()
             ->json([
@@ -47,9 +52,9 @@ class ApiController extends Controller
       
     }
 
-    public function addUmkm(Request $request){
+    public function addUmkm($nama){
 
-        echo $request->input('nama')."aaa";
+        echo $nama."aaa";
         // $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
         // $file = $request->file('file');
         // $temp =new Umkm();
