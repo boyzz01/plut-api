@@ -157,7 +157,8 @@ class ApiController extends Controller
             $temp =new Retur();
             $temp->kode_produk =$request->kode;
             $temp->user = $request->user;
-            $temp->jumlah = $request->$request->jumlah; 
+            $temp->jumlah = $request->jumlah; 
+            $temp->keterangan = $request->keterangan;
             $saved = $temp->save();
             if(!$saved){
                 return response()
