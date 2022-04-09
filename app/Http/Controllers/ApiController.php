@@ -153,7 +153,7 @@ class ApiController extends Controller
 
        $produk = DB::table('barang')->where('kode_produk','=',$request->kode)->first();
 
-       $total =  $produk->stock-$request->jumlah;
+       $total =  ($produk->stock)-($request->jumlah);
         DB::table('barang')->where('kode_produk','=',$request->kode)->first()->update(array(
             'stock'=>$total,));
     }
