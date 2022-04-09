@@ -145,7 +145,7 @@ class ApiController extends Controller
         $temp->stock =$request->stock;
         $temp->kode_umkm =$request->umkm;
         $temp->kode_kota =$request->kota;
-        $temp->kode_kategori = "00";
+        $temp->kode_kategori = $kategori->kode;
        
         $saved = $temp->save();
     
