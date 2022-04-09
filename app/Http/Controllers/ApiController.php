@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Kota;
 use App\Models\Produk;
+use App\Models\Retur;
 use App\Models\Umkm;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -141,11 +142,7 @@ class ApiController extends Controller
             ]);
           }
 
-          return response()
-            ->json([
-                'success' => true,
-                'data' =>"gagal"
-            ]);
+         
       
     }
 
@@ -153,11 +150,29 @@ class ApiController extends Controller
 
        $produk = DB::table('barang')->where('kode_produk','=',$request->kode)->first();
 
+       $total =  ($produk->stock)-($request->jumlah);
+        DB::table('barang')->where('kode_produk','=',$request->kode)->first()->update(array(
+            'stock'=>$total,));
+        
+            $temp =new Retur();
+            $temp->kode_produk =$request->kode;
+            $temp->user = $request->user;
+            $temp->jumlah = $request->$request->jumlah; 
+            $saved = $temp->save();
+            if(!$saved){
+                return response()
+                ->json([
+                    'success' => false,
+                    'data' =>"Error"
+                ]);
+              }else{
+                return response()
+                ->json([
+                    'success' => true,
+                    'data' =>"Produk Berhasil di retur"
+                ]);
+              }
     
-       return response()
-       ->json([
-           'success' => true,
-           'data' =>$produk
-       ]);
+             
     }
 }
