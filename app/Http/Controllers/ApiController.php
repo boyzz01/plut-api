@@ -61,7 +61,7 @@ class ApiController extends Controller
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
-        $temp->foto = $file->getRealPath();
+        $temp->foto = $file;
 
         $saved = $temp->save();
     
