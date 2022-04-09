@@ -98,12 +98,14 @@ class ApiController extends Controller
         $no = DB::table('counter')->where('id','=',1)->first();
 
     
-     
+        $file = $request->file('foto');
+        $foto = $request->file('foto')->store('foto');
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
         $temp->kode_umkm = str_pad($no->counter, 3, '0', STR_PAD_LEFT);
+        $temp->foto = $foto;
         $saved = $temp->save();
     
 
