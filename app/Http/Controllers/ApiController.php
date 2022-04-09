@@ -49,7 +49,7 @@ class ApiController extends Controller
 
     public function addUmkm(Request $request){
 
-        echo $request->input('nama');
+        echo $request->input('nama')."aaa";
         // $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
         // $file = $request->file('file');
         // $temp =new Umkm();
