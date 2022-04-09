@@ -153,7 +153,7 @@ class ApiController extends Controller
 
        $produk = DB::table('barang')->where('kode_produk','=',$request->kode)->first();
 
-       $total =  ($produk->stock);
+    
        return response()
        ->json([
            'success' => true,
