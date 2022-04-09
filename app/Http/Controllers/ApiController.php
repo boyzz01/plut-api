@@ -98,14 +98,13 @@ class ApiController extends Controller
         $no = DB::table('counter')->where('id','=',1)->first();
 
     
-        $file = $request->file('foto');
-        $foto = $request->file('foto')->store('foto');
+       
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
         $temp->kode_umkm = str_pad($no->counter, 3, '0', STR_PAD_LEFT);
-        $temp->foto = $foto;
+       
         $saved = $temp->save();
     
 
@@ -145,6 +144,8 @@ class ApiController extends Controller
         $counter = str_pad($total, 4, '0', STR_PAD_LEFT);
         DB::update("update umkm set total = $total where kode_umkm = $request->umkm");
         $kode = $request->kota.$request->umkm.$kategori->kode.$counter;
+        $file = $request->file('foto');
+        $foto = $request->file('foto')->store('foto');
         $temp =new Produk();
         $temp->nama =$request->nama;
         $temp->kode_produk ="11";
@@ -155,7 +156,7 @@ class ApiController extends Controller
         $temp->kode_kategori = $kategori->kode;
         $temp->kode_produk = $kode;
 
-
+        $temp->foto = $foto;
 
        
         $saved = $temp->save();
