@@ -52,6 +52,45 @@ class ApiController extends Controller
       
     }
 
+    // public function addUmkm(Request $request){
+
+    //     // echo $request('nama')."aaa";
+    //     $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
+    //     $no = DB::table('counter')->where('id','=',1)->first();
+
+    
+    //     $file = $request->file('foto');
+    //     $temp =new Umkm();
+    //     $temp->nama =$request->nama;
+    //     $temp->kode_kota = $kota->kode;
+    //     $temp->nib = $request->nib;
+    //     $temp->kode_umkm = str_pad($no->counter, 4, '0', STR_PAD_LEFT);
+    //     $foto = $request->file('foto')->store('foto');
+    //     $temp->foto = $foto;
+      
+    //     $saved = $temp->save();
+    
+
+    //       if(!$saved){
+    //         return response()
+    //         ->json([
+    //             'success' => false,
+    //             'data' =>"Error"
+    //         ]);
+    //       }else{
+
+    //         $tes = $no->counter+1;
+    //         DB::update("update counter set counter = $tes where id = 1");
+    //         return response()
+    //         ->json([
+    //             'success' => true,
+    //             'data' =>"UMKM Berhasil ditambah"
+    //         ]);
+    //       }
+      
+    // }
+
+
     public function addUmkm(Request $request){
 
         // echo $request('nama')."aaa";
@@ -59,15 +98,12 @@ class ApiController extends Controller
         $no = DB::table('counter')->where('id','=',1)->first();
 
     
-        $file = $request->file('foto');
+     
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
         $temp->kode_umkm = str_pad($no->counter, 4, '0', STR_PAD_LEFT);
-        $foto = $request->file('foto')->store('foto');
-        $temp->foto = $foto;
-      
         $saved = $temp->save();
     
 
