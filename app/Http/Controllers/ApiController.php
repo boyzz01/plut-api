@@ -56,11 +56,15 @@ class ApiController extends Controller
 
         // echo $request('nama')."aaa";
         $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
+        $no = DB::table('counter')->where('id','=',1)->first();
+
+    
         $file = $request->file('foto');
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
+        $temp->kode_umkm = str_pad($no->counter, 3, '0', STR_PAD_LEFT);
         $temp->foto = $file->getRealPath();
 
         $saved = $temp->save();
@@ -73,6 +77,9 @@ class ApiController extends Controller
                 'data' =>"Error"
             ]);
           }else{
+
+            $tes = $no->counter+1;
+            DB::update("update counter set counter = $tes where id = 1");
             return response()
             ->json([
                 'success' => true,
