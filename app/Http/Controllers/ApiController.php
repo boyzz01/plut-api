@@ -56,7 +56,7 @@ class ApiController extends Controller
 
         // echo $request('nama')."aaa";
         $kota = DB::table('ms_kota')->where('nama','=',$request->kode_kota)->first();
-        $file = $request->file('file');
+        $file = $request->foto;
         $temp =new Umkm();
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
