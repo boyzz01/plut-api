@@ -128,7 +128,6 @@ class ApiController extends Controller
         $foto = $request->file('foto')->store('foto');
         $temp =new Produk();
         $temp->nama =$request->nama;
-        $temp->kode_produk ="11";
         $temp->harga =$request->harga;
         $temp->stock =$request->stock;
         $temp->kode_umkm =$request->umkm;
@@ -150,10 +149,11 @@ class ApiController extends Controller
                 'data' =>"Error"
             ]);
           }else{
+              $produk = Produk::where("kode_produk",$kode)->first();
             return response()
             ->json([
                 'success' => true,
-                'data' =>"UMKM Berhasil ditambah"
+                'data' =>$produk
             ]);
           }
 
