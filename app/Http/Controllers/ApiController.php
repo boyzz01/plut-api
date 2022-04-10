@@ -121,18 +121,32 @@ class ApiController extends Controller
 
     public function edit_produk(Request $request){
 
-        $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
-        $url = config('app.url');
-        $temp=$url."/storage/app/". $foto;
-        Produk::where('kode_produk',$request->kode)
-        ->update(['stock'=>$request->stock,'harga'=>$request->harga,
-        'nama'=>$request->nama,'foto'=>$temp]);
-        $produk = Produk::where("kode_produk",$request->kode)->first();
-            return response()
-            ->json([
-                'success' => true,
-                'data' =>$produk
-            ]);
+        if($request->file('foto')==null){
+        
+            Produk::where('kode_produk',$request->kode)
+            ->update(['stock'=>$request->stock,'harga'=>$request->harga,
+            'nama'=>$request->nama]);
+            $produk = Produk::where("kode_produk",$request->kode)->first();
+                return response()
+                ->json([
+                    'success' => true,
+                    'data' =>"ok"
+                ]);
+        }else{
+            $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
+            $url = config('app.url');
+            $temp=$url."/storage/app/". $foto;
+            Produk::where('kode_produk',$request->kode)
+            ->update(['stock'=>$request->stock,'harga'=>$request->harga,
+            'nama'=>$request->nama,'foto'=>$temp]);
+            $produk = Produk::where("kode_produk",$request->kode)->first();
+                return response()
+                ->json([
+                    'success' => true,
+                    'data' =>"ok"
+                ]);
+        }
+      
     }
     public function add_produk(Request $request){
 
