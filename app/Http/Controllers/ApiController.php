@@ -68,7 +68,7 @@ class ApiController extends Controller
         $temp->nama =$request->nama;
         $temp->kode_kota = $kota->kode;
         $temp->nib = $request->nib;
-        $temp->kode_umkm = str_pad($no->counter, 3, '0', STR_PAD_LEFT);
+        $temp->kode_umkm = str_pad($no->counter, 4, '0', STR_PAD_LEFT);
        
         $saved = $temp->save();
     
