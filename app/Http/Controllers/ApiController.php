@@ -103,7 +103,7 @@ class ApiController extends Controller
     }
 
     public function detail_produk($id){
-        return response()->json(Produk::all()->where("kode_produk",$id));
+        return response()->json(Produk::where("kode_produk",$id)->first());
     }
 
     public function get_produk_umkm($id){
