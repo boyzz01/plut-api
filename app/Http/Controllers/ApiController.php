@@ -135,7 +135,7 @@ class ApiController extends Controller
                 ]);
         }else{
 
-            $exists = Storage::disk('foto')->exists($request->kode.'.jpg');
+            $exists = Storage::exists($request->kode.'.jpg');
             $filename  = storage_path('foto').$request->kode.'.jpg';
             
             $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
