@@ -113,7 +113,7 @@ class ApiController extends Controller
     }
 
     public function get_produk_umkm($id){
-        $produk = DB::select("SELECT * FROM barang WHERE kode_umkm =  '$id");
+        $produk = DB::select("SELECT * FROM barang WHERE kode_umkm =  '$id'");
         return response()->json($produk);
       //  return response()->json(Produk::all()->where("kode_umkm",$id));
     }
