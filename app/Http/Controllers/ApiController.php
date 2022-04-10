@@ -130,7 +130,7 @@ class ApiController extends Controller
                 return response()
                 ->json([
                     'success' => true,
-                    'data' =>"ok"
+                    'data' =>"oke"
                 ]);
         }else{
             $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
@@ -143,7 +143,7 @@ class ApiController extends Controller
                 return response()
                 ->json([
                     'success' => true,
-                    'data' =>"ok"
+                    'data' =>"ok2"
                 ]);
         }
       
