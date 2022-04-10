@@ -105,7 +105,7 @@ class ApiController extends Controller
 
     public function detail_produk($id){
         $produk = DB::select("SELECT * FROM `barang` JOIN umkm WHERE barang.kode_umkm=umkm.kode_umkm AND barang.kode_produk =  $id");
-        return response()->json($produk);
+        return response()->json($produk[0]);
     }
 
     public function get_produk_umkm($id){
