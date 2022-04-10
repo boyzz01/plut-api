@@ -25,6 +25,7 @@ Route::get('umkm',[ApiController::class, 'get_umkm']);
 Route::get('produk',[ApiController::class, 'get_produk']);
 Route::get('produk_umkm/{id}',[ApiController::class, 'get_produk_umkm']);
 Route::get('detail_produk/{id}',[ApiController::class, 'detail_produk']);
+Route::get('detail_umkm/{id}',[ApiController::class, 'detail_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );
 Route::post('/add_umkm', [ApiController::class,'addUmkm'] );
 Route::post('/add_produk', [ApiController::class,'add_produk'] );
