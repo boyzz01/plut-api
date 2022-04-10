@@ -127,10 +127,11 @@ class ApiController extends Controller
         Produk::where('kode_produk',$request->kode)
         ->update(['stock'=>$request->stock,'harga'=>$request->harga,
         'nama'=>$request->nama,'foto'=>$temp]);
-        return response()
+        $produk = Produk::where("kode_produk",$request->kode)->first();
+            return response()
             ->json([
-                'success' => false,
-                'data' =>"Error"
+                'success' => true,
+                'data' =>$produk
             ]);
     }
     public function add_produk(Request $request){
