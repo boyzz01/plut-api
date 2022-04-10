@@ -102,6 +102,10 @@ class ApiController extends Controller
         return response()->json(Produk::all());
     }
 
+    public function detail_produk($id){
+        return response()->json(Produk::all()->where("kode_produk",$id));
+    }
+
     public function get_produk_umkm($id){
         return response()->json(Produk::all()->where("kode_umkm",$id));
     }
