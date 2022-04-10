@@ -29,4 +29,5 @@ Route::get('detail_umkm/{id}',[ApiController::class, 'detail_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );
 Route::post('/add_umkm', [ApiController::class,'addUmkm'] );
 Route::post('/add_produk', [ApiController::class,'add_produk'] );
+Route::post('/edit_produk', [ApiController::class,'edit_produk'] );
 Route::post('/retur', [ApiController::class,'retur_produk'] );

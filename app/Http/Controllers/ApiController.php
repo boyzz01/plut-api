@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PDO;
 
 class ApiController extends Controller
 {
@@ -118,6 +119,20 @@ class ApiController extends Controller
       //  return response()->json(Produk::all()->where("kode_umkm",$id));
     }
 
+    public function edit_produk(Request $request){
+
+        $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
+        $url = config('app.url');
+        $temp=$url."/storage/app/". $foto;
+        Produk::where('kode_produk',$request->kode)
+        ->update(['stock'=>$request->stock,['harga'=>$request->harga,
+        'nama'=>$request->nama,'foto'=>$temp]]);
+        return response()
+            ->json([
+                'success' => false,
+                'data' =>"Error"
+            ]);
+    }
     public function add_produk(Request $request){
 
         $kategori = DB::table('ms_kategori')->where('nama','=',$request->kategori)->first();
