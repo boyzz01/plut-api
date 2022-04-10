@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use PDO;
 
 class ApiController extends Controller
@@ -133,6 +134,10 @@ class ApiController extends Controller
                     'data' =>"oke"
                 ]);
         }else{
+
+            $exists = Storage::disk('foto')->exists($request->kode.'.jpg');
+            $filename  = storage_path('foto').$request->kode.'.jpg';
+            
             $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
             $url = config('app.url');
             $temp=$url."/storage/app/". $foto;
@@ -140,11 +145,21 @@ class ApiController extends Controller
             ->update(['stock'=>$request->stock,'harga'=>$request->harga,
             'nama'=>$request->nama,'foto'=>$temp]);
             $produk = Produk::where("kode_produk",$request->kode)->first();
+
+            if($exists) {
                 return response()
                 ->json([
                     'success' => true,
                     'data' =>"ok2"
                 ]);
+            }else{
+                return response()
+                ->json([
+                    'success' => true,
+                    'data' =>"ok3"
+                ]);
+            }
+                
         }
       
     }
