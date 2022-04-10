@@ -138,7 +138,8 @@ class ApiController extends Controller
             $exists = Storage::exists($request->kode.'.jpg');
             $filename  = storage_path('foto').$request->kode.'.jpg';
             
-            $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
+           // $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
+            $foto = $request->file('foto')->store('foto');
             $url = config('app.url');
             $temp=$url."/storage/app/". $foto;
             Produk::where('kode_produk',$request->kode)
@@ -146,6 +147,7 @@ class ApiController extends Controller
             'nama'=>$request->nama,'foto'=>$temp]);
             $produk = Produk::where("kode_produk",$request->kode)->first();
 
+            
             if($exists) {
                 return response()
                 ->json([
