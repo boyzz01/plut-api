@@ -125,8 +125,8 @@ class ApiController extends Controller
         $url = config('app.url');
         $temp=$url."/storage/app/". $foto;
         Produk::where('kode_produk',$request->kode)
-        ->update(['stock'=>$request->stock,['harga'=>$request->harga,
-        'nama'=>$request->nama,'foto'=>$temp]]);
+        ->update(['stock'=>$request->stock,'harga'=>$request->harga,
+        'nama'=>$request->nama,'foto'=>$temp]);
         return response()
             ->json([
                 'success' => false,
