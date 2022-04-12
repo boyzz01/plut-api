@@ -105,6 +105,12 @@ class ApiController extends Controller
         return response()->json(Produk::all());
     }
 
+    public function get_produk_shop(){
+   
+        $produk = DB::select("SELECT * FROM barang LEFT JOIN keranjang ON barang.kode_produk = keranjang.product_id");
+        return response()->json($produk);
+    }
+
     public function detail_produk($id){
         $produk = DB::select("SELECT barang.*,umkm.nama AS 'nama_umkm' FROM `barang` JOIN umkm  WHERE barang.kode_umkm=umkm.kode_umkm AND barang.kode_produk ='$id'");
         return response()->json($produk[0]);
@@ -137,6 +143,7 @@ class ApiController extends Controller
 
             $exists = Storage::exists($request->kode.'.jpg');
             $filename  = storage_path('foto').$request->kode.'.jpg';
+            
             
            // $foto = $request->file('foto')->storeAs('foto',$request->kode.'.jpg');
             $foto = $request->file('foto')->store('foto');
