@@ -105,9 +105,9 @@ class ApiController extends Controller
         return response()->json(Produk::all());
     }
 
-    public function get_produk_shop(){
+    public function get_produk_shop($id_user){
    
-        $produk = DB::select("SELECT * FROM barang LEFT JOIN keranjang ON barang.kode_produk = keranjang.product_id");
+        $produk = DB::select("SELECT * FROM barang LEFT JOIN keranjang ON barang.kode_produk = keranjang.product_id AND keranjang.user_id = $id_user");
         return response()->json($produk);
     }
 
