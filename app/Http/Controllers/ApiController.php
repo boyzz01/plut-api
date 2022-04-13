@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Kategori;
 use App\Models\Kota;
 use App\Models\Produk;
@@ -215,6 +216,12 @@ class ApiController extends Controller
 
          
       
+    }
+
+    public function addCart(Request $request){
+    
+        Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$request);
+        //DB::update("update keranjang set stock = $total where kode_produk = $request->kode");
     }
 
     public function retur_produk(Request $request){
