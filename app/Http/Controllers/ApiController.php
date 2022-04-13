@@ -226,6 +226,12 @@ class ApiController extends Controller
             'jumlah' => 'required',
         ]);
         Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$request);
+
+        return response()
+        ->json([
+            'success' => true,
+            'data' =>"Cart Berhasil di update"
+        ]);
         //DB::update("update keranjang set stock = $total where kode_produk = $request->kode");
     }
 
