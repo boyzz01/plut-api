@@ -220,7 +220,7 @@ class ApiController extends Controller
 
     public function addCart(Request $request){
     
-        Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$request);
+        Cart::updateOrCreate(['user_id'=>$request->user_id],$request);
         //DB::update("update keranjang set stock = $total where kode_produk = $request->kode");
     }
 
