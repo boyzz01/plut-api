@@ -220,12 +220,12 @@ class ApiController extends Controller
 
     public function addCart(Request $request){
     
-        // $validateData = $request->validate([
-        //     'produk_id' => 'required',
-        //     'user_id' => 'required',
-        //     'jumlah' => 'required',
-        // ]);
-        // Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$validateData);
+        $validateData = $request->validate([
+            'product_id' => 'required',
+            'user_id' => 'required',
+            'jumlah' => 'required',
+        ]);
+        Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$validateData);
 
         return response()
         ->json([
