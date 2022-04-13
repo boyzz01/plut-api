@@ -10,5 +10,10 @@ class Cart extends Model
     protected $table = 'keranjang';
     protected $primaryKey = 'id_cart';
     
+    protected $fillable = [
+        'product_id',
+        'user_id',
+        'jumlah',
+    ];
     use HasFactory;
 }
