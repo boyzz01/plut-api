@@ -225,7 +225,7 @@ class ApiController extends Controller
             'user_id' => 'required',
             'jumlah' => 'required',
         ]);
-        Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$request);
+        Cart::updateOrCreate(['user_id'=>$request->user_id,'product_id'=>$request->product_id],$validateData);
 
         return response()
         ->json([
