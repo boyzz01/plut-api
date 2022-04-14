@@ -119,7 +119,7 @@ class ApiController extends Controller
 
     public function get_cart($id){
         $produk = DB::select("SELECT * FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$id'");
-        return response()->json($produk[0]);
+        return response()->json($produk);
     }
 
     public function detail_umkm($id){
