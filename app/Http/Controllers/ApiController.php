@@ -113,7 +113,7 @@ class ApiController extends Controller
 
         return response()
                 ->json([
-                    'total' => $total['total'],
+                    'total' => $total[0]['total'],
                     $produk
                 ]);
       //  return response()->json([$total,$produk]);
