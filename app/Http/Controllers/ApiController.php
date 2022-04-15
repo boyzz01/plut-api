@@ -109,7 +109,7 @@ class ApiController extends Controller
     public function get_produk_shop(Request $request){
    
         $produk = DB::select("SELECT * FROM barang LEFT JOIN keranjang ON barang.kode_produk = keranjang.product_id AND keranjang.user_id = '$request->id_user'");
-        $total = DB::select("SELECT COUNT(*) AS total FROM keranjang WHERE user_id = $request->id_user' AND jumlah > 0");
+        $total = DB::select("SELECT COUNT(*) AS total FROM keranjang WHERE user_id = '$request->id_user' AND jumlah > 0");
 
         return response()->json($total,$produk);
     }
