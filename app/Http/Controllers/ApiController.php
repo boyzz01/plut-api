@@ -126,8 +126,14 @@ class ApiController extends Controller
 
     public function get_cart($id){
         $produk = DB::select("SELECT * FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$id'");
-
-        return response()->json($produk);
+        $total = DB::select("SELECT SUM(keranjang.jumlah) as total_item,SUM(keranjang.jumlah*barang.harga) as total_harga FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$id'");
+        return response()
+        ->json([
+            'total_item' => $total[0]->total_item,
+            'total_harga' => $total[0]->total_harga,
+            'produk'=>$produk
+        ]);
+       // return response()->json($produk);
     }
 
     public function detail_umkm($id){
