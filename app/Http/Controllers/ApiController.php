@@ -306,13 +306,13 @@ class ApiController extends Controller
             $transaksi->save();
             $tes = $no->counter+1;
 
-            DB::update("update counter set counter = $tes where id = 1");
+            DB::update("update counter set counter = $tes where id = 3");
 
 
             for($i=0;$i<count($produk);$i++){
                 $data = new TransaksiItem();
                 $data->id_transaksi = $idtrans;
-                $data->id_product = $produk[$i]->kode_product;
+                $data->id_product = $produk[$i]->kode_produk;
                 $data->id_umkm = $produk[$i]->kode_umkm;
                 $data->total_produk = $produk[$i]->jumlah;
                 $data->total_harga = ($produk[$i]->jumlah)*($produk[$i]->harga);
