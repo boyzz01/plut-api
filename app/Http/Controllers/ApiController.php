@@ -289,7 +289,8 @@ class ApiController extends Controller
 
     public function add_transaksi(Request $request){
        
-        DB::transaction(function () use ($request){
+        DB::beginTransaction();
+        try{
             $produk = DB::select("SELECT * FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$request->user_id'");
             $no = DB::table('counter')->where('id','=',3)->first();
         
@@ -329,31 +330,30 @@ class ApiController extends Controller
             }
 
             DB::table("keranjang")->where('user_id','=',$request->user_id)->delete();
-
+            DB::commit();
             return response()->json([
                 'success' => true,
-                'id_trans'=>$idtrans
+                'data'=>$idtrans
             ]);
-        });
+        }
+        catch (Exception $e) {       // Rollback Transaction
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'data'=>$e
+            ]);
+            // ada yang error     
+        }
     }
 
     public function get_transaksi($id){
-      
-        DB::beginTransaction();
-       
-        try{
-            $transaksi = DB::select("SELECT transaksi.*,user.username FROM `transaksi` JOIN user ON transaksi.id_user = user.id WHERE transaksi.id_transaksi = '$id' AND transaksi.deleted = '0'");
-            $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->where('deleted','=','0')->get();
-            
+        $transaksi = DB::select("SELECT transaksi.*,user.username FROM `transaksi` JOIN user ON transaksi.id_user = user.id WHERE transaksi.id_transaksi = '$id' AND transaksi.deleted = '0'");
+        $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->where('deleted','=','0')->get();
+
         return response()
         ->json([
             'transaksi' => $transaksi[0],
             'item'=>$item
         ]);
-
-        }catch (Exception $e) {       // Rollback Transaction
-            DB::rollback();
-            // ada yang error    
-         }
     }
 }
