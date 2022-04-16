@@ -337,8 +337,8 @@ class ApiController extends Controller
     }
 
     public function get_transaksi($id){
-        $transaksi = DB::table("transaksi")->where('id_transaksi','=',$id)->first();
-        $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->get();
+        $transaksi = DB::table("transaksi")->where('id_transaksi','=',$id)->where('deleted','=','0')->first();
+        $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->where('deleted','=','0')->get();
 
         return response()
         ->json([
