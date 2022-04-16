@@ -11,6 +11,7 @@ use App\Models\Transaksi;
 use App\Models\TransaksiItem;
 use App\Models\Umkm;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -338,15 +339,21 @@ class ApiController extends Controller
 
     public function get_transaksi($id){
       
-        DB::transaction(function () use ($id){
+        DB::beginTransaction();
+       
+        try{
             $transaksi = DB::select("SELECT transaksi.*,user.username FROM `transaksi` JOIN user ON transaksi.id_user = user.id WHERE transaksi.id_transaksi = '$id' AND transaksi.deleted = '0'");
             $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->where('deleted','=','0')->get();
-    
+            
         return response()
         ->json([
             'transaksi' => $transaksi[0],
             'item'=>$item
         ]);
-    });
+
+        }catch (Exception $e) {       // Rollback Transaction
+            DB::rollback();
+            // ada yang error    
+         }
     }
 }
