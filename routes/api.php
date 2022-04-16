@@ -26,6 +26,7 @@ Route::get('get_cart/{id}',[ApiController::class, 'get_cart']);
 Route::get('produk',[ApiController::class, 'get_produk']);
 Route::post('produk_shop',[ApiController::class, 'get_produk_shop']);
 Route::get('produk_umkm/{id}',[ApiController::class, 'get_produk_umkm']);
+Route::get('get_transaksi/{id}',[ApiController::class, 'get_transaksi']);
 Route::get('detail_produk/{id}',[ApiController::class, 'detail_produk']);
 Route::get('detail_umkm/{id}',[ApiController::class, 'detail_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );

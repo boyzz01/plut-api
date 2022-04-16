@@ -322,11 +322,28 @@ class ApiController extends Controller
                 $kode =  $produk[$i]->kode_produk;
                 $barang = DB::table('barang')->where('kode_produk','=',$kode)->first();
                 $stock = ($barang->stock)-($produk[$i]->jumlah);
-                DB::table('barang')->where('kode_produk','=',$kode)->update(array('stock'=>$stock));
-              //  DB::update("update barang set stock = $stock where kode_produk = $kode");
+                //DB::table('barang')->where('kode_produk','=',$kode)->update(array('stock'=>$stock));
+               DB::update("update barang set stock = $stock where kode_produk = $kode");
             }
 
             DB::table("keranjang")->where('user_id','=',$request->user_id)->delete();
+
+            return response()
+            ->json([
+                'success' => true,
+                'id_trans'=>$idtrans
+            ]);
         });
+    }
+
+    public function get_transaksi($id){
+        $transaksi = DB::table("transaksi")->where('id_transaksi','=',$id)->first();
+        $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->get();
+
+        return response()
+        ->json([
+            'transaksi' => $transaksi,
+            'item'=>$item
+        ]);
     }
 }
