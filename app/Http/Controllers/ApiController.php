@@ -296,6 +296,7 @@ class ApiController extends Controller
             $transaksi = new Transaksi();
             $transaksi->id_transaksi =$idtrans;
             $transaksi->id_user = $request->user_id;
+            $transaksi->subtotal= $request->subtotal;
             $transaksi->total_uang = $request->total_uang;
             $transaksi->uang_diterima = $request->uang_diterima;
             $transaksi->kembalian = $request->kembalian;
