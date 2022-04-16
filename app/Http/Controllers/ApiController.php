@@ -312,16 +312,16 @@ class ApiController extends Controller
             for($i=0;$i<count($produk);$i++){
                 $data = new TransaksiItem();
                 $data->id_transaksi = $idtrans;
-                $data->id_product = $produk[$i]['kode_product'];
-                $data->id_umkm = $produk[$i]['kode_umkm'];
-                $data->total_produk = $produk[$i]['jumlah'];
-                $data->total_harga = ($produk[$i]['jumlah'])*($produk[$i]['harga']);
+                $data->id_product = $produk[$i]->kode_product;
+                $data->id_umkm = $produk[$i]->kode_umkm;
+                $data->total_produk = $produk[$i]->jumlah;
+                $data->total_harga = ($produk[$i]->jumlah)*($produk[$i]->harga);
                 $data->deleted = 0;
                 $data->save();
 
-                $barang = DB::table('barang')->where('kode_produk','=',$produk[$i]['kode_product'])->first();
-                $stock = ($barang->stock)-($produk[$i]['jumlah']);
-                DB::update("update barang set stock = $stock where kode_produk = $produk[$i]['kode_product']");
+                $barang = DB::table('barang')->where('kode_produk','=',$produk[$i]->kode_product)->first();
+                $stock = ($barang->stock)-($produk[$i]->jumlah);
+                DB::update("update barang set stock = $stock where kode_produk = $produk[$i]->kode_product");
             }
 
             DB::table("keranjang")->where('user_id','=',$request->user_id)->delete();
