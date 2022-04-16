@@ -289,7 +289,7 @@ class ApiController extends Controller
     public function add_transaksi(Request $request){
        
         DB::transaction(function () use ($request){
-            $produk = DB::select("SELECT * FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$request->user_id");
+            $produk = DB::select("SELECT * FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$request->user_id'");
             $no = DB::table('counter')->where('id','=',3)->first();
         
             $idtrans =  str_pad($no->counter, 5, '0', STR_PAD_LEFT);
