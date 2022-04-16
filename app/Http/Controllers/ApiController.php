@@ -319,7 +319,7 @@ class ApiController extends Controller
                 $data->deleted = 0;
                 $data->save();
 
-                $barang = DB::table('barang')->where('kode_produk','=',$produk[$i]->kode_product)->first();
+                $barang = DB::table('barang')->where('kode_produk','=',$produk[$i]->kode_produk)->first();
                 $stock = ($barang->stock)-($produk[$i]->jumlah);
                 DB::update("update barang set stock = $stock where kode_produk = $produk[$i]->kode_product");
             }
