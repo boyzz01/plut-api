@@ -7,6 +7,8 @@ use App\Models\Kategori;
 use App\Models\Kota;
 use App\Models\Produk;
 use App\Models\Retur;
+use App\Models\Transaksi;
+use App\Models\TransaksiItem;
 use App\Models\Umkm;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -282,5 +284,46 @@ class ApiController extends Controller
               }
     
              
+    }
+
+    public function add_transaksi(Request $request){
+       
+        DB::transaction(function () use ($request){
+            $produk = DB::select("SELECT * FROM `keranjang` JOIN barang ON barang.kode_produk = keranjang.product_id WHERE keranjang.jumlah > 0 AND keranjang.user_id = '$request->user_id");
+            $no = DB::table('counter')->where('id','=',3)->first();
+        
+            $idtrans =  str_pad($no->counter, 5, '0', STR_PAD_LEFT);
+            $transaksi = new Transaksi();
+            $transaksi->id_transaksi =$idtrans;
+            $transaksi->id_user = $request->user_id;
+            $transaksi->total_uang = $request->total_uang;
+            $transaksi->uang_diterima = $request->uang_diterima;
+            $transaksi->diskon = $request->diskon;
+            $transaksi->total_produk = $request->total;
+            $transaksi->deleted = 0;
+
+            $transaksi->save();
+            $tes = $no->counter+1;
+
+            DB::update("update counter set counter = $tes where id = 1");
+
+
+            for($i=0;$i<count($produk);$i++){
+                $data = new TransaksiItem();
+                $data->id_transaksi = $idtrans;
+                $data->id_product = $produk[$i]['kode_product'];
+                $data->id_umkm = $produk[$i]['kode_umkm'];
+                $data->total_produk = $produk[$i]['jumlah'];
+                $data->total_harga = ($produk[$i]['jumlah'])*($produk[$i]['harga']);
+                $data->deleted = 0;
+                $data->save();
+
+                $barang = DB::table('barang')->where('kode_produk','=',$produk[$i]['kode_product'])->first();
+                $stock = ($barang->stock)-($produk[$i]['jumlah']);
+                DB::update("update barang set stock = $stock where kode_produk = $produk[$i]['kode_product']");
+            }
+
+            DB::table("keranjang")->where('user_id','=',$request->user_id)->delete();
+        });
     }
 }

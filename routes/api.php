@@ -34,3 +34,4 @@ Route::post('/add_cart', [ApiController::class,'addCart'] );
 Route::post('/add_produk', [ApiController::class,'add_produk'] );
 Route::post('/edit_produk', [ApiController::class,'edit_produk'] );
 Route::post('/retur', [ApiController::class,'retur_produk'] );
+Route::post('/add_transaksi', [ApiController::class,'add_transaksi'] );
