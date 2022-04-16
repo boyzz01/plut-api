@@ -322,7 +322,8 @@ class ApiController extends Controller
                 $kode =  $produk[$i]->kode_produk;
                 $barang = DB::table('barang')->where('kode_produk','=',$kode)->first();
                 $stock = ($barang->stock)-($produk[$i]->jumlah);
-                DB::update("update barang set stock = $stock where kode_produk = $kode");
+                DB::table('barang')->where('kode_produk','=',$kode)->update(array('stock'=>$stock));
+              //  DB::update("update barang set stock = $stock where kode_produk = $kode");
             }
 
             DB::table("keranjang")->where('user_id','=',$request->user_id)->delete();
