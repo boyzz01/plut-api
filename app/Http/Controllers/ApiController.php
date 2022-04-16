@@ -337,7 +337,7 @@ class ApiController extends Controller
     }
 
     public function get_transaksi($id){
-        $transaksi = DB::select("SELECT *,user.username FROM `transaksi` JOIN user ON transaksi.id_user = user.id WHERE transaksi.id_transaksi = '$id' AND transaksi.deleted = '0'");
+        $transaksi = DB::select("SELECT transaksi.*,user.username FROM `transaksi` JOIN user ON transaksi.id_user = user.id WHERE transaksi.id_transaksi = '$id' AND transaksi.deleted = '0'");
         $item =DB::table("transaksi_item")->where('id_transaksi','=',$id)->where('deleted','=','0')->get();
 
         return response()
