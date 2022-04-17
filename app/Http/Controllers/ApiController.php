@@ -393,10 +393,10 @@ class ApiController extends Controller
 
     public function get_history(){
 
-        $data = DB::select("SELECT * FROM transaksi order by created_at asc");
-        $trans = [];
-        for($i=0;$i<count($data);$i++){
-            $date = new DateTime($data[$i]->created_at);
+        $trans = DB::select("SELECT * FROM transaksi order by created_at asc");
+        $data= [];
+        for($i=0;$i<count($trans);$i++){
+            $date = new DateTime($trans[$i]->created_at);
 
             if (!isset($data[$date->format('Y-m-d')])) {
                 $data[$date->format('Y-m-d')] = [
@@ -405,7 +405,7 @@ class ApiController extends Controller
                 ];
               }
               $data[$date->format('Y-m-d')]['detail'][] = [
-                $data[$i]
+                $trans[$i]
               ];
         }
       //  $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
