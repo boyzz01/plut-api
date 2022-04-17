@@ -389,4 +389,9 @@ class ApiController extends Controller
             'item'=>$item
         ]);
     }
+
+    public function get_history(){
+        $data = DB::table("transaksi")->get()->groupBy("created_at");
+        return response()->json($data);
+    }
 }

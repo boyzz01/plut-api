@@ -30,6 +30,8 @@ Route::get('get_transaksi/{id}',[ApiController::class, 'get_transaksi']);
 Route::get('detail_produk/{id}',[ApiController::class, 'detail_produk']);
 Route::get('detail_umkm/{id}',[ApiController::class, 'detail_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );
+Route::get('history',[ApiController::class, 'get_history']);
+
 Route::post('/add_umkm', [ApiController::class,'addUmkm'] );
 Route::post('/add_cart', [ApiController::class,'addCart'] );
 Route::post('/add_produk', [ApiController::class,'add_produk'] );
