@@ -11,6 +11,7 @@ use App\Models\Transaksi;
 use App\Models\TransaksiItem;
 use App\Models\Umkm;
 use App\Models\User;
+use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -391,7 +392,23 @@ class ApiController extends Controller
     }
 
     public function get_history(){
-        $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
+
+        $data = DB::select("SELECT * FROM transaksi order by created_at asc");
+        $trans = [];
+        for($i=0;$i<count($data);$i++){
+            $date = new DateTime($data[$i]->created_at);
+
+            if (!isset($data[$date->format('Y-m-d')])) {
+                $data[$date->format('Y-m-d')] = [
+                  'date' => $date->format('j F Y'),
+                  'detail' => [],
+                ];
+              }
+              $data[$date->format('Y-m-d')]['detail'][] = [
+                $data[$i]
+              ];
+        }
+      //  $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
         return response()->json($data);
     }
 }
