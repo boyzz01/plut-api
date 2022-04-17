@@ -401,14 +401,10 @@ class ApiController extends Controller
             if (!isset($data[$date->format('Y-m-d')])) {
                 $data[$date->format('Y-m-d')] = [
                 'date' => $date->format('j F Y'),
-                'total' => [],
+                'total' => 20000,
                 'detail' => [],
                 ];
             }
-
-            $data[$date->format('Y-m-d')]['total'][] = [
-                "20000"
-            ];
             $data[$date->format('Y-m-d')]['detail'][] = [
                 $trans
             ];
