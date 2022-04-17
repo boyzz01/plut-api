@@ -416,7 +416,7 @@ class ApiController extends Controller
     }
 
     public function get_laporan(){
-        $data = DB::select("SELECT *,SUM(transaksi_item.total_produk) AS jumlah_terjual,SUM(transaksi_item.total_harga) AS total_pendapatan FROM `umkm` LEFT JOIN transaksi_item ON transaksi_item.id_umkm = umkm.kode_umkm GROUP BY umkm.kode_umkm");
+        $data = DB::select("SELECT umkm.*,SUM(transaksi_item.total_produk) AS jumlah_terjual,SUM(transaksi_item.total_harga) AS total_pendapatan FROM umkm LEFT JOIN transaksi_item ON transaksi_item.id_umkm = umkm.kode_umkm GROUP BY umkm.kode_umkm");
         return response()->json($data);
     }
 }
