@@ -396,8 +396,22 @@ class ApiController extends Controller
         $trans = DB::select("SELECT * FROM transaksi order by created_at asc");
         $data= [];
         for($i=0;$i<count($trans);$i++){
-            $date = new DateTime($trans[$i]->created_at);
-            $data[$date]['detail'][]= [$trans];
+            $date = new DateTime($row['tgl']);
+
+            if (!isset($data[$date->format('Y-m-d')])) {
+                $data[$date->format('Y-m-d')] = [
+                'date' => $date->format('j F Y'),
+                'total' => [],
+                'detail' => [],
+                ];
+            }
+
+            $data[$date->format('Y-m-d')]['total'][] = [
+                "20000"
+            ];
+            $data[$date->format('Y-m-d')]['detail'][] = [
+                $trans
+            ];
         }
       //  $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
 
