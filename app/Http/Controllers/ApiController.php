@@ -396,7 +396,7 @@ class ApiController extends Controller
         $trans = DB::select("SELECT * FROM transaksi order by created_at asc");
         $data= [];
         for($i=0;$i<count($trans);$i++){
-            $date = new DateTime($row['tgl']);
+            $date = new DateTime($trans[$i]->created_at);
 
             if (!isset($data[$date->format('Y-m-d')])) {
                 $data[$date->format('Y-m-d')] = [
