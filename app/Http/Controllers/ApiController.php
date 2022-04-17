@@ -419,4 +419,9 @@ class ApiController extends Controller
         $data = DB::select("SELECT * FROM `umkm` u LEFT JOIN (SELECT id_umkm,SUM(total_produk) AS jumlah_terjual,SUM(total_harga) AS total_pendapatan FROM transaksi_item GROUP BY id_umkm) t ON u.kode_umkm = t.id_umkm");
         return response()->json($data);
     }
+
+    public function detail_laporan($id){
+        $data = DB::select("SELECT * from transaksi_item where id_umkm = '$id'");
+        return response()->json($data);
+    }
 }

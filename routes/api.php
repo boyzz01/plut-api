@@ -32,7 +32,7 @@ Route::get('detail_umkm/{id}',[ApiController::class, 'detail_umkm']);
 Route::any('/login', [ApiController::class,'check_user'] );
 Route::get('history',[ApiController::class, 'get_history']);
 Route::get('get_laporan',[ApiController::class, 'get_laporan']);
-
+Route::get('detail_laporan/{id}',[ApiController::class, 'detail_laporan']);
 Route::post('/add_umkm', [ApiController::class,'addUmkm'] );
 Route::post('/add_cart', [ApiController::class,'addCart'] );
 Route::post('/add_produk', [ApiController::class,'add_produk'] );
