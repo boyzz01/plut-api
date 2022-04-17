@@ -71,10 +71,42 @@ class ApiController extends Controller
     
        
         $temp =new Umkm();
-        $temp->nama =$request->nama;
-        $temp->kode_kota = $kota->kode;
-        $temp->nib = $request->nib;
+        // $temp->nama =$request->nama;
+        // $temp->kode_kota = $kota->kode;
+        // $temp->nib = $request->nib;
         $temp->kode_umkm = str_pad($no->counter, 4, '0', STR_PAD_LEFT);
+
+        $temp->pemilik =$request->np;  
+        $temp->alamat_pemilik =$request->ap ; 
+        $temp->ttl =$request->ttl ; 
+        $temp->jk =$request->jk ;
+        $temp->nohp =$request->hp ;
+        $temp->noktp =$request->ktp ; 
+        $temp->nama =$request->nu ;
+        $temp->alamat_umkm =$request->au ;
+        $temp->jenis_produk =$request->jp ;
+        $temp->deskripsi_produk =$request->dp ;
+        $temp->nib =$request->nib  ;
+        $temp->no_halal =$request->halal  ;
+        $temp->no_bpom =$request->bpom ;
+        $temp->no_pirt =$request->pirt ; 
+        $temp->merek_dagang =$request->merk  ;
+        $temp->hak_cipta =$request->hak  ;
+        $temp->email =$request->email  ;
+        $temp->fb =$request->fb ;
+        $temp->instagram =$request->ig ;
+        $temp->landing_page =$request->web ; 
+        $temp->shopee =$request->shopee ;
+        $temp->tokopedia =$request->tokopedia ;
+        $temp->lain =$request->lain ;
+        $temp->kode_kota =$request->kode_kota;
+
+        if($request->file('foto')!=null){
+            $foto = $request->file('foto')->store('foto');
+            $url = config('app.url');
+            $image=$url."/storage/app/". $foto;
+            $temp->foto = $image;
+        }
        
         $saved = $temp->save();
     
