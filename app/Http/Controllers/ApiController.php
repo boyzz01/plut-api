@@ -139,7 +139,7 @@ class ApiController extends Controller
 
     
     public function get_produk(){
-        $data = DB::table("produk")->where("deleted",'=','0')->get();
+        $data = DB::table("barang")->where("deleted",'=','0')->get();
         return response()->json($data);
     
     }
