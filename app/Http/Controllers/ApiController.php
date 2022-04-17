@@ -391,7 +391,7 @@ class ApiController extends Controller
     }
 
     public function get_history(){
-        $data = DB::table("transaksi")->get()->groupBy("created_at");
+        $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
         return response()->json($data);
     }
 }
