@@ -132,14 +132,15 @@ class ApiController extends Controller
     }
 
     public function get_umkm(){
-        return response()->json(Umkm::all()->where("deleted",'=','0'));
+        $data = DB::table("umkm")->where("deleted",'=','0')->get();
+        return response()->json($data);
     }
     
 
     
     public function get_produk(){
-   
-        return response()->json(Produk::all()->where("deleted",'=','0'));
+        $data = DB::table("produk")->where("deleted",'=','0')->get();
+        return response()->json($data);
     
     }
 
