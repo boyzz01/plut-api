@@ -132,19 +132,20 @@ class ApiController extends Controller
     }
 
     public function get_umkm(){
-        return response()->json(Umkm::all());
+        return response()->json(Umkm::all()->where("deleted",'=','0'));
     }
     
 
     
     public function get_produk(){
    
-        return response()->json(Produk::all());
+        return response()->json(Produk::all()->where("deleted",'=','0'));
+    
     }
 
     public function get_produk_shop(Request $request){
    
-        $produk = DB::select("SELECT * FROM barang LEFT JOIN keranjang ON barang.kode_produk = keranjang.product_id AND keranjang.user_id = '$request->id_user'");
+        $produk = DB::select("SELECT * FROM barang LEFT JOIN keranjang ON barang.kode_produk = keranjang.product_id WHERE keranjang.user_id = '$request->id_user' and barang.deleted ='0'");
         $total = DB::select("SELECT COUNT(*) AS total FROM keranjang WHERE user_id = '$request->id_user' AND jumlah > 0");
 
         return response()
@@ -423,5 +424,24 @@ class ApiController extends Controller
     public function detail_laporan($id){
         $data = DB::select("SELECT transaksi_item.*,barang.foto FROM `transaksi_item` JOIN barang ON transaksi_item.id_product = barang.kode_produk where transaksi_item.id_umkm = '$id'");
         return response()->json($data);
+    }
+
+    public function hapus_umkm(Request $request){
+
+        //hapus umkm
+        //hapus barang
+        //hapus keranjang
+        DB::beginTransaction();
+        try{
+            
+        }
+        catch (Exception $e) {       // Rollback Transaction
+            DB::rollback();
+            return response()->json([
+                'success' => false,
+                'data'=>$e
+            ]);
+            // ada yang error     
+        }
     }
 }
