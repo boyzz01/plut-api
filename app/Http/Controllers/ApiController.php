@@ -412,7 +412,7 @@ class ApiController extends Controller
       //  $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
 
         $data = DB::table('transaksi')
-        ->select(DB::raw('*'), DB::raw('sum(total_harga) as total'))
+        ->select( DB::raw('sum(total_harga) as total'))
         ->groupBy(DB::raw('created_at') )
         ->get();
         return response()->json($data);
