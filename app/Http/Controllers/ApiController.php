@@ -462,7 +462,7 @@ class ApiController extends Controller
             }
             return response()->json([
                 'success' => true,
-                'data'=>"sukses"
+                'data'=>$request->kode
             ]);
           
         }
