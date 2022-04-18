@@ -460,6 +460,10 @@ class ApiController extends Controller
             for($i=0;$i<count($data);$i++){
                 DB::table('keranjang')->where('product_id', $data[$i]->kode_produk)->delete();
             }
+            return response()->json([
+                'success' => true,
+                'data'=>"sukses"
+            ]);
           
         }
         catch (Exception $e) {       // Rollback Transaction
