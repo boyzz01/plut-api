@@ -100,7 +100,7 @@ class ApiController extends Controller
         $temp->shopee =$request->shopee ;
         $temp->tokopedia =$request->tokopedia ;
         $temp->lain =$request->lain ;
-        $temp->kode_kota =$request->kode_kota;
+        $temp->kode_kota =$kota->kode;
 
         if($request->file('foto')!=null){
             $foto = $request->file('foto')->store('foto');
