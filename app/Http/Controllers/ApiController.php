@@ -460,6 +460,8 @@ class ApiController extends Controller
             for($i=0;$i<count($data);$i++){
                 DB::table('keranjang')->where('product_id', $data[$i]->kode_produk)->delete();
             }
+
+            DB::commit();
             return response()->json([
                 'success' => true,
                 'data'=>$request->kode
