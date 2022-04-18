@@ -452,8 +452,8 @@ class ApiController extends Controller
         //hapus keranjang
         DB::beginTransaction();
         try{
-            DB::update("update umkm set deleted = 1 where kode_umkm = '$request->kode'");
-            DB::update("update barang set deleted = 1 where kode_umkm = '$request->kode'");
+            DB::update("update umkm set deleted = '1' where kode_umkm = '$request->kode'");
+            DB::update("update barang set deleted = '1' where kode_umkm = '$request->kode'");
 
             $data = DB::select("SELECT * from barang where kode_umkm = '$request->kode'");
 
