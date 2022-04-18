@@ -60,6 +60,24 @@ class ApiController extends Controller
       
     }
 
+    public function check_akses(Request $request){
+        $user = User::where('username',$request->username)->first();
+        if($user==null){
+            return response()
+            ->json([
+                'success' => false,
+                'data' =>$user
+            ]);
+        }else{
+            return response()
+                ->json([
+                    'success' => true,
+                    'data' =>$user
+                ]);
+           
+        }
+    }
+
 
 
 
@@ -434,7 +452,15 @@ class ApiController extends Controller
         //hapus keranjang
         DB::beginTransaction();
         try{
-            
+            DB::update("update umkm set deleted = 1 where kode_umkm = $request->kode");
+            DB::update("update barang set deleted = 1 where kode_umkm = $request->kode");
+
+            $data = DB::select("SELECT * from barang where kode_umkm = $request->kode");
+
+            for($i=0;$i<count($data);$i++){
+                DB::table('keranjang')->where('product_id', $data[$i]->kode_produk)->delete();
+            }
+          
         }
         catch (Exception $e) {       // Rollback Transaction
             DB::rollback();
