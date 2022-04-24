@@ -41,3 +41,6 @@ Route::post('/retur', [ApiController::class,'retur_produk'] );
 Route::post('/add_transaksi', [ApiController::class,'add_transaksi'] );
 
 Route::post('/hapus_umkm', [ApiController::class,'hapus_umkm'] );
+
+
+Route::get('transaksi_user/{id}',[ApiController::class, 'transaksi_user']);

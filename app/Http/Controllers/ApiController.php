@@ -414,24 +414,7 @@ class ApiController extends Controller
     public function get_history(){
 
         $trans = DB::select("SELECT * FROM transaksi order by id_transaksi desc");
-        // $data= [];
-        // for($i=0;$i<count($trans);$i++){
-        //     $date = new DateTime($trans[$i]->created_at);
-
-        //     if (!isset($data[$date->format('Y-m-d')])) {
-        //         $data[$date->format('Y-m-d')] = [
-        //         'date' => $date->format('j F Y'),
-        //         'total' => 20000,
-        //         'detail' => [],
-        //         ];
-        //     }
-        //     $data[$date->format('Y-m-d')]['detail'][] = [
-        //         $trans
-        //     ];
-        // }
-      //  $data = DB::select("SELECT *,SUM(total_harga) as total FROM transaksi GROUP BY created_at");
-
-    //    $data = DB::select("SELECT * FROM transaksi order by created_at asc");
+    
         return response()->json($trans);
     }
 
@@ -477,4 +460,11 @@ class ApiController extends Controller
             // ada yang error     
         }
     }
+
+    public function transaksi_user($id){
+        $trans = DB::select("SELECT * FROM transaksi where id_user='$id' order by id_transaksi desc");
+
+        return response()->json($trans);
+    }
+
 }
