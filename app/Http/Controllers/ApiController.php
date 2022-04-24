@@ -119,6 +119,15 @@ class ApiController extends Controller
         $temp->tokopedia =$request->tokopedia ;
         $temp->lain =$request->lain ;
         $temp->kode_kota =$kota->kode;
+        
+        $temp->nilai_asset=$request->nilai_asset;
+        $temp->omset = $request->omset;
+        $temp->karyawan = $request->karyawan;
+        $temp->tiktok = $request->tiktok;
+        $temp->youtube =$request->youtube;
+        $temp->sosmedlain = $request->sosmedlain;
+        $temp->lpse = $request->lpse;
+        $temp->mbiz = $request->mbiz;
 
         if($request->file('foto')!=null){
             $foto = $request->file('foto')->store('foto');
