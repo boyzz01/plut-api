@@ -358,7 +358,9 @@ class ApiController extends Controller
             $transaksi->diskon = $request->diskon;
             $transaksi->total_produk = $request->total;
             $transaksi->deleted = 0;
-
+            $transaksi->metode =  $request->metode;
+            $transaksi->bank = $request->bank;
+            $transaksi->nokartu=$request->nokartu;
             $transaksi->save();
             $tes = $no->counter+1;
 
