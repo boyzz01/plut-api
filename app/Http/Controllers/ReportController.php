@@ -20,6 +20,9 @@ class ReportController extends Controller
         
     }
 
+    public function all(){
+        
+    }
     public function umkm(){
         $data= DB::select("SELECT SUM(transaksi_item.total_produk) as 'total_p',transaksi_item.id_product,umkm.* FROM transaksi_item JOIN barang ON barang.kode_produk = transaksi_item.id_product JOIN umkm ON barang.kode_umkm = umkm.kode_umkm GROUP BY umkm.kode_umkm ORDER by total_p DESC, barang.nama ASC");
          return view('report_umkm',['data'=>$data]);
