@@ -21,7 +21,7 @@ class ReportController extends Controller
     }
 
     public function all(){
-        $data= DB::select("SELECT SUM(total_produk) as 'total',transaksi_item.id_product,barang.*,umkm.nama as 'nama_umkm',transaksi_item.created_at AS 'tanggal',ms_kota.nama AS 'kota',ms_kategori.nama AS 'kat' FROM transaksi_item JOIN barang ON barang.kode_produk = transaksi_item.id_product JOIN umkm ON barang.kode_umkm = umkm.kode_umkm JOIN ms_kota  ON ms_kota.kode = barang.kode_kota JOIN ms_kategori ON ms_kategori.kode = barang.kode_kategori GROUP BY transaksi_item.created_at,transaksi_item.id_product ORDER by total DESC, barang.nama ASC");
+        $data= DB::select("SELECT SUM(total_produk) as 'total',transaksi_item.id_product,barang.*,umkm.nama as 'nama_umkm',transaksi_item.created_at AS 'tanggal',ms_kota.nama AS 'kota',ms_kategori.nama AS 'kat' FROM transaksi_item JOIN barang ON barang.kode_produk = transaksi_item.id_product JOIN umkm ON barang.kode_umkm = umkm.kode_umkm JOIN ms_kota  ON ms_kota.kode = barang.kode_kota JOIN ms_kategori ON ms_kategori.kode = barang.kode_kategori GROUP BY transaksi_item.created_at,transaksi_item.id_product ORDER by transaksi_item.created_at DESC, barang.nama ASC");
         //  return response()->json($data);
         return view('report_all',['data'=>$data]);
     }
