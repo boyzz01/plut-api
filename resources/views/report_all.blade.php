@@ -42,7 +42,7 @@
                                 <li
                                     class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">
                                     Choose an option:</li>
-                                <li class="navi-item">
+                                {{-- <li class="navi-item">
                                     <a href="#" class="navi-link" id="export_print">
                                         <span class="navi-icon">
                                             <i class="la la-print"></i>
@@ -57,7 +57,7 @@
                                         </span>
                                         <span class="navi-text">Copy</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="navi-item">
                                     <a href="#" class="navi-link" id="export_excel">
                                         <span class="navi-icon">
@@ -66,7 +66,7 @@
                                         <span class="navi-text">Excel</span>
                                     </a>
                                 </li>
-                                <li class="navi-item">
+                                {{-- <li class="navi-item">
                                     <a href="#" class="navi-link" id="export_csv">
                                         <span class="navi-icon">
                                             <i class="la la-file-text-o"></i>
@@ -81,7 +81,7 @@
                                         </span>
                                         <span class="navi-text">PDF</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                             <!--end::Navigation-->
                         </div>
