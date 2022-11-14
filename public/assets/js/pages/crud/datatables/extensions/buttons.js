@@ -99,9 +99,11 @@
 		var initTable2 = function () {
 
 			// begin first table
-			var table = $('#tes').DataTable({
+			var table = $('#teaass').DataTable({
 				responsive: true,
-
+				"dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
+				      "<'row'<'col-sm-12'tr>>" +
+				      "<'row'<'col-sm-5'i><'col-sm-7'p>>",
 				buttons: [
 					{
 						extend : 'print',

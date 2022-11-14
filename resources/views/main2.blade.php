@@ -202,14 +202,82 @@ var start_date;
 
         $( document ).ready(function() {
   //konfigurasi DataTable pada tabel dengan id tes dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
-//    var $dTable = $('#tes').DataTable({
-//     responsive: true,
-//     "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
-//       "<'row'<'col-sm-12'tr>>" +
-//       "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-      
+   var $dTable = $('#tes').DataTable({
+    responsive: true,
+    "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
+      "<'row'<'col-sm-12'tr>>" +
+      "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      buttons: [
+					{
+						extend : 'print',
+						title: '',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
+						}
+						// 'copyHtml5',
+						// 'excelHtml5',
+						// 'csvHtml5',
+						// 'pdfHtml5',
+					},
+					{
+						extend : 'copyHtml5',
+						title: '',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
+						}
+					},
+					{
+						extend : 'excelHtml5',
+						title: '',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
+						}
+					},
+					{
+						extend : 'csvHtml5',
+						title: '',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
+						}
+					},
+					{
+						extend : 'pdfHtml5',
+						title: '',
+						exportOptions: {
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
+						}
+					},
+					'colvis'
+				
+				],
       
    });
+
+   
+   $('#export_print').on('click', function (e) {
+				e.preventDefault();
+				$dTable.button(0).trigger();
+			});
+
+			$('#export_copy').on('click', function (e) {
+				e.preventDefault();
+				$dTable.button(1).trigger();
+			});
+
+			$('#export_excel').on('click', function (e) {
+				e.preventDefault();
+				$dTable.button(2).trigger();
+			});
+
+			$('#export_csv').on('click', function (e) {
+				e.preventDefault();
+				$dTable.button(3).trigger();
+			});
+
+			$('#export_pdf').on('click', function (e) {
+				e.preventDefault();
+				$dTable.button(4).trigger();
+			});
 
    //menambahkan daterangepicker di dalam datatables
    $("div.datesearchbox").html('<div class="input-group"> <div class="input-group-addon"> <i class="far fa-calendar-alt"></i> </div><input type="text" class="form-control pull-right" id="datesearch" placeholder="Cari Berdasarkan Range Tanggal"> </div>');
