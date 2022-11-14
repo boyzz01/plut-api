@@ -24,6 +24,8 @@
     <link href="{{ asset('assets/plugins/custom/uppy/uppy.bundle.css" rel="stylesheet') }}" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
+        <link href="{{ asset('assets/css/gaya.css') }}" rel="stylesheet"
+        type="text/css" />
 
 </head>
 

@@ -9,7 +9,7 @@ class ReportController extends Controller
 {
     //
     public function fast(){
-        $data= DB::select("SELECT SUM(total_produk) as 'total',transaksi_item.id_product,barang.* FROM transaksi_item JOIN barang ON barang.kode_produk = transaksi_item.id_product GROUP BY transaksi_item.id_product ORDER by total DESC, barang.nama ASC");
+        $data= DB::select("SELECT SUM(total_produk) as 'total',transaksi_item.id_product,barang.*,umkm.nama as 'nama_umkm' FROM transaksi_item JOIN barang ON barang.kode_produk = transaksi_item.id_product JOIN umkm ON barang.kode_umkm = umkm.kode_umkm GROUP BY transaksi_item.id_product ORDER by total DESC, barang.nama ASC");
       //  return response()->json($data);
       return view('report_fast',['data'=>$data]);
     }

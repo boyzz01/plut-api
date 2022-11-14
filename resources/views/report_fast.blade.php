@@ -1,6 +1,7 @@
 @extends('main2')
 
 @section('container')
+
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
        
         <div class="container-fluid">
@@ -17,6 +18,7 @@
                             <tr>
                                 <th style="width: 5%">No</th>
                                 <th>Produk</th>
+                                <th>UMKM</th>
                                 <th>Terjual</th>
 
                             </tr>
@@ -30,9 +32,20 @@
                             @foreach ($data as $d)
                                 <tr id="tr{{ $d->id }}">
                                     <td style=" width:5%">{{ $nomor }}</td>
-                                    <td><div class="symbol symbol-circle symbol-40 mr-3">
-                                        <img alt="Pic" src="{{ $d->foto }}">
-                                    </div>{{ $d->nama }}</td>
+                                   
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="symbol symbol-circle symbol-35 mr-3">
+                                                <p> <a href="#" class="ratio img-responsive img-circle" style="background-image: url({{ $d->foto }});width:50px"></a>
+                                                </p>  {{-- <img class="rounded-circle" alt="Pic" src="{{ $d->foto }}"> --}}
+                                            </div>
+                                            <div>
+                                                <a href="#" class="text-dark-75 "> &nbsp{{ $d->nama }}</a>
+                                            
+                                            </div>
+                                        </div>
+                                    </div></td>
+                                    <td>{{ $d->nama_umkm }}</td>
                                     <td>{{ $d->total }}</td>
                                   
                                 </tr>
