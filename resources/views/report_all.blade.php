@@ -32,10 +32,15 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%">No</th>
-                                <th>Produk</th>
-                                <th>UMKM</th>
-                                <th>Terjual</th>
                                 <th>Tanggal</th>
+                                <th>Produk</th>
+                                <th>SKU</th>
+                                <th>UMKM</th>
+                                <th>Kab/Kota</th>
+                                <th>Kategori</th>
+                                <th>Qtty Penjualan</th>
+                                <th>Value Penjualan</th>
+                               
 
                             </tr>
                         </thead>
@@ -48,7 +53,11 @@
                             @foreach ($data as $d)
                                 <tr id="tr{{ $d->id }}">
                                     <td style=" width:5%">{{ $nomor }}</td>
-                                   
+                                    @php
+                                    $parts = explode(' ', $d->tanggal);
+                                    $newDate = date("d-m-Y", strtotime($parts[0]));
+                                @endphp
+                                <td>{{  $newDate }}</td>
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="symbol symbol-circle symbol-35 mr-3">
@@ -61,14 +70,18 @@
                                             </div>
                                         </div>
                                     </div></td>
+                                    <td>{{ $d->kode_produk }}</td>
                                     <td>{{ $d->nama_umkm }}</td>
+                                    <td>{{ $d->kota }}</td>
+                                    <td>{{ $d->kat }}</td>
                                     <td>{{ $d->total }}</td>
 
                                     @php
-                                        $parts = explode(' ', $d->tanggal);
-                                        $newDate = date("d-m-Y", strtotime($parts[0]));
+                                        $nilai = number_format($d->total*$d->harga, 0);
                                     @endphp
-                                    <td>{{  $newDate }}</td>
+                                    <td>Rp. {{ $nilai }}</td>
+
+                                
                                   
                                 </tr>
 

@@ -182,7 +182,7 @@ var start_date;
       //nama depan = 0
       //nama belakang = 1
       //tanggal terdaftar =2
-      var evalDate= parseDateValue(aData[4]);
+      var evalDate= parseDateValue(aData[1]);
         if ( ( isNaN( dateStart ) && isNaN( dateEnd ) ) ||
              ( isNaN( dateStart ) && evalDate <= dateEnd ) ||
              ( dateStart <= evalDate && isNaN( dateEnd ) ) ||
@@ -210,7 +210,7 @@ var start_date;
    });
 
    //menambahkan daterangepicker di dalam datatables
-   $("div.datesearchbox").html('<div class="input-group"> <div class="input-group-addon"> <i class="glyphicon glyphicon-calendar"></i> </div><input type="text" class="form-control pull-right" id="datesearch" placeholder="Cari Berdasarkan Range Tanggal"> </div>');
+   $("div.datesearchbox").html('<div class="input-group"> <div class="input-group-addon"> <i class="far fa-calendar-alt"></i> </div><input type="text" class="form-control pull-right" id="datesearch" placeholder="Cari Berdasarkan Range Tanggal"> </div>');
 
    document.getElementsByClassName("datesearchbox")[0].style.textAlign = "right";
 
