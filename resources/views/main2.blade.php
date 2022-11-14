@@ -202,11 +202,13 @@ var start_date;
 
         $( document ).ready(function() {
   //konfigurasi DataTable pada tabel dengan id tes dan menambahkan  div class dateseacrhbox dengan dom untuk meletakkan inputan daterangepicker
-   var $dTable = $('#tes').DataTable({
-    responsive: true,
-    "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
-      "<'row'<'col-sm-12'tr>>" +
-      "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+//    var $dTable = $('#tes').DataTable({
+//     responsive: true,
+//     "dom": "<'row'<'col-sm-4'l><'col-sm-5' <'datesearchbox'>><'col-sm-3'f>>" +
+//       "<'row'<'col-sm-12'tr>>" +
+//       "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+      
+      
    });
 
    //menambahkan daterangepicker di dalam datatables

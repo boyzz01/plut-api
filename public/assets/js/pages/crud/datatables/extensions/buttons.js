@@ -99,15 +99,15 @@
 		var initTable2 = function () {
 
 			// begin first table
-			var table = $('#kt_datatable2').DataTable({
+			var table = $('#tes').DataTable({
 				responsive: true,
 
 				buttons: [
 					{
 						extend : 'print',
-						title: 'Daftar UMKM Sumatera Utara',
+						title: '',
 						exportOptions: {
-							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7 ]
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
 						}
 						// 'copyHtml5',
 						// 'excelHtml5',
@@ -116,30 +116,30 @@
 					},
 					{
 						extend : 'copyHtml5',
-						title: 'Daftar UMKM Sumatera Utara',
+						title: '',
 						exportOptions: {
-							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7 ]
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
 						}
 					},
 					{
 						extend : 'excelHtml5',
-						title: 'Daftar UMKM Sumatera Utara',
+						title: '',
 						exportOptions: {
-							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7 ]
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
 						}
 					},
 					{
 						extend : 'csvHtml5',
-						title: 'Daftar UMKM Sumatera Utara',
+						title: '',
 						exportOptions: {
-							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7 ]
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
 						}
 					},
 					{
 						extend : 'pdfHtml5',
-						title: 'Daftar UMKM Sumatera Utara',
+						title: '',
 						exportOptions: {
-							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7 ]
+							columns: [ 0, 1, 2, 3 , 4 , 5 , 6 , 7,8 ]
 						}
 					},
 					'colvis'
