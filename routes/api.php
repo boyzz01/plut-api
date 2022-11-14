@@ -53,7 +53,7 @@ Route::get("slow",[ReportController::class,"slow"]);
 Route::get("umkm",[ReportController::class,"umkm"]);
 Route::get("kota",[ReportController::class,"kota"]);
 Route::get("kategori",[ReportController::class,"kategori"]);
-Route::get("promo",[ReportController::class,"promo"]);
+
 Route::get("stock_all",[ReportController::class,"stock_all"]);
 Route::get("stock_umkm",[ReportController::class,"stock_umkm"]);
 Route::get("stock_kategori",[ReportController::class,"stock_kategori"]);
