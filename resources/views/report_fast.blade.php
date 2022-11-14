@@ -30,7 +30,9 @@
                             @foreach ($data as $d)
                                 <tr id="tr{{ $d->id }}">
                                     <td style=" width:5%">{{ $nomor }}</td>
-                                    <td>{{ $d->nama }}</td>
+                                    <td><div class="symbol symbol-circle symbol-40 mr-3">
+                                        <img alt="Pic" src="{{ $d->foto }}">
+                                    </div>{{ $d->nama }}</td>
                                     <td>{{ $d->total }}</td>
                                   
                                 </tr>
